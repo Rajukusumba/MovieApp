@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.movieapp.navigation.MovieNavigation
 import com.example.movieapp.ui.theme.MovieAppTheme
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 import java.util.concurrent.TimeUnit
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                MainContent()
+         MovieNavigation()
             }
         }
     }
@@ -42,37 +43,27 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp(content: @Composable () -> Unit) {
     MovieAppTheme {
-        Scaffold(topBar = {
-            TopAppBar(backgroundColor = Color.Red, elevation = 10.dp) {
-                Text(text = "Movies", color = Color.Green)
+//        Scaffold(topBar = {
+//            TopAppBar(backgroundColor = Color.Red, elevation = 10.dp) {
+//                Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+//
+//                    Text(text = "Movies", color = Color.Green)
+//                }
+//
+//
+//            }
+//        }) {
+//            content()
+//        }
+        content()
 
-
-            }
-        }) {
-
-        }
 
     }
 
 }
 
 
-@Preview
-@Composable
-fun MainContent(moviesList: List<String> = listOf("Avathar", "300", "Bhahubali", "hsajdhjh")) {
-    Column(Modifier.padding(12.dp)) {
-        LazyColumn {
-            items(items = moviesList) {
-                MovieRow(movie = it){
 
-                }
-
-
-            }
-        }
-    }
-
-}
 
 @Composable
 fun MovieRow(movie: String,onItemClick:(String)->Unit ={ }) {
@@ -82,7 +73,7 @@ fun MovieRow(movie: String,onItemClick:(String)->Unit ={ }) {
             .fillMaxWidth()
             .height(130.dp)
             .clickable {
-                       onItemClick(movie)
+                onItemClick(movie)
 
             },
         shape = RoundedCornerShape(
@@ -122,7 +113,7 @@ fun Greeting(name: String) {
 fun DefaultPreview() {
     MovieAppTheme {
         MyApp {
-            MainContent()
+           MovieNavigation()
         }
     }
 }
